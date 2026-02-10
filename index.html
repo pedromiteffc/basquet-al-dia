@@ -4,32 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deporte Vivo - PEDRO MITEFF</title>
+    <title>Basquet Al Día</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 
     <!-- FAVICON -->
-    <link rel="stylesheet" href="assets/img/favicon.png">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
-    <!-- REMIX ICONS -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
-
-    <!-- BOXICONS -->
+    <!-- ICONS -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
 
 </head>
 <body>
 
-    <header class="header" data-header>
+    <header class="header" id="header" data-header>
 
         <div class="container">
 
             <a href="index.html" class="logo">
-                <img src="assets/img/favicon.png" width="30px">
+                <img src="assets/img/favicon.png" width="50px">
             </a>
     
-            <button class="menu-toggle-btn" data-nav-toggle-btn>
+            <button class="menu-toggle-btn" id="menu-toggle-btn" data-nav-toggle-btn>
                 <i class="ri-menu-line"></i>
             </button>
 
@@ -38,26 +36,29 @@
                 <ul class="navbar-list">
 
                     <li>
-                        <a href="basketball.html" class="navbar-link">Baloncesto</a>
+                        <a href="liganacional.html" class="navbar-link">Liga Nacional</a>
                     </li>
 
                     <li>
-                        <a href="football.html" class="navbar-link">Fútbol</a>
+                        <a href="ligaargentina.html" class="navbar-link">Liga Argentina</a>
                     </li>
 
                     <li>
-                        <a href="baseball.html" class="navbar-link">Baseball</a>
+                        <a href="ligafederal.html" class="navbar-link">Liga Federal</a>
                     </li>
 
                     <li>
-                        <a href="voleyball.html" class="navbar-link">Voley</a>
+                        <a href="ligaproximo.html" class="navbar-link">Liga Proximo</a>
+                    </li>
+
+                    <li>
+                        <a href="formativau21.html" class="navbar-link">Liga Formativa U21</a>
                     </li>
 
                 </ul>
 
                 <div class="header-actions">
-                    <a href="account.html" class="header-action-link">Mi Cuenta</a>
-                    <a href="logout.php" class="header-action-link">Cerrar Sesión</a>
+                    <a href="https://www.instagram.com/basquet.al.dia" target="_blank" class="header-action-link">INSTAGRAM</a>
                 </div>
 
             </nav>
@@ -76,18 +77,23 @@
 
                     <div class="hero-content">
 
-                        <h1 class="h1 hero-title">Deporte Vivo</h1>
+                        <h1 class="h1 hero-title">Basquet Al Día</h1>
                         <!-- <p class="hero- text">Proyecto hecho por Pedro Miteff</p> -->
-                        <p class="form-text">
-                            <span>❗</span>
-                            IMPORTANTE: LA PAGINA SE ENCUENTRA EN DESARROLLO. PUEDE HABER ERRORES Y FALTA DE FUNCIONALIDADES
+                        <p class="form-text" style="align-content: center;">
+
+                            <span>
+                                <i class="ri-error-warning-line"></i>
+                            </span>
+
+                            IMPORTANTE: LA PAGINA SE ENCUENTRA EN DESARROLLO. PUEDE HABER ERRORES Y FALTA DE FUNCIONALIDADES. NO VINCULADO CON NINGUNA FEDERACIÓN
+
                         </p>
 
                     </div>
 
                     
                     <figure class="hero-banner">
-                        <img src="assets/img/hero-banner.svg">
+                        <img src="assets/img/undraw_game-day_m63l.svg">
                     </figure>
 
                 </div>
@@ -101,11 +107,11 @@
                     <div class="about-content">
 
                         <div class="about-icon">
-                            <i class='bx bxs-trophy'></i>
+                            <i class='bx bx-basketball'></i>
                         </div>
 
-                        <h2 class="h2 about-title">Por qué Deporte Vivo?</h2>
-                        <p class="about-text">Nam libero tempore cum osluta as nobis est eligendi optio cumque nihile impedite </p>
+                        <h2 class="h2 about-title">Característica Principales</h2>
+                        <p class="about-text">Que nos diferencia del resto</p>
 
                     </div>
 
@@ -119,11 +125,11 @@
                                     <i class="ri-bar-chart-2-line"></i>
                                 </div>
 
-                                <h3 class="h3 card-title">Todas las Estadísticas</h3>
+                                <h3 class="h3 card-title">Todas las estadísticas</h3>
 
-                                <p class="card-text">
+                                <!-- <p class="card-text">
                                     Sed ut perspiciatis unde omnis iste natus error sit voluptas
-                                </p>
+                                </p> -->
 
                             </div>
 
@@ -134,14 +140,14 @@
                             <div class="about-card">
 
                                 <div class="card-icon">
-                                    <i class="ri-book-open-line"></i>
+                                    <i class="ri-earth-line"></i>
                                 </div>
 
-                                <h3 class="h3 card-title">Varios Deportes</h3>
+                                <h3 class="h3 card-title">Las principales ligas del país</h3>
 
-                                <p class="card-text">
+                                <!-- <p class="card-text">
                                     Sed ut perspiciatis unde omnis iste natus error sit voluptas
-                                </p>
+                                </p> -->
 
                             </div>
 
@@ -155,11 +161,11 @@
                                     <i class="ri-smartphone-line"></i>
                                 </div>
 
-                                <h3 class="h3 card-title">Al alcance de tu mano</h3>
+                                <h3 class="h3 card-title">Todo al alcance de tu mano</h3>
 
-                                <p class="card-text">
+                                <!-- <p class="card-text">
                                     Sed ut perspiciatis unde omnis iste natus error sit voluptas
-                                </p>
+                                </p> -->
 
                             </div>
 
@@ -173,11 +179,11 @@
                                     <i class="ri-loop-left-line"></i>
                                 </div>
 
-                                <h3 class="h3 card-title">Actualización constante</h3>
+                                <h3 class="h3 card-title">Actualizacion fecha a fecha</h3>
 
-                                <p class="card-text">
+                                <!-- <p class="card-text">
                                     Sed ut perspiciatis unde omnis iste natus error sit voluptas
-                                </p>
+                                </p> -->
 
                             </div>
 
@@ -193,40 +199,55 @@
 
                 <div class="container">
 
-                    <h2 class="h2 section-title">Algunas características</h2>
-                    <p class="section-text">Et harum quidem rerun facilis est et expedita destinctio nam libero tempore cum</p>
+                    <h2 class="h2 section-title">Mas características</h2>
+                    <p class="section-text">Otras características que contiene la pagina</p>
 
                     <div class="features-wrapper">
 
                         <figure class="features-banner">
-                            <img src="assets/img/info-banner.svg">
+                            <img src="assets/img/undraw_newspaper_ri3k.svg">
                         </figure>
 
                        <div class="features-content">
 
                             <div class="features-content-subtitle">
                                 <i class="ri-bard-fill"></i>
-                                <span>Noticias diarias</span>
+                                <span>Enterate de TODO</span>
                             </div>
 
                             <h3 class="features-content-title">
-                                Explora, <strong>lee</strong> e <strong>infórmate</strong> con nuestras noticias diarias
+                                Enterate de <strong> todo </strong> acerca de tu <strong> equipo favorito </strong>
                             </h3>
 
-                            <p class="features-content-text">
-                                Temporibus autem quibusdam et aut officiis debitis aut rerum a necessitatibus
-                            </p>
+                            <!-- <p class="features-content-text">
+                                ACA VA CUALQUIER COSA O DIRECTAMENTE NADA
+                            </p> -->
 
                             <ul class="features-list">
 
                                 <li class="features-list-item">
                                     <i class="ri-arrow-right-s-line"></i>
-                                    <p>Donec pede justo fringilla vel nec.</p>
+                                    <p>Partidos Jugados</p>
                                 </li>
 
                                 <div class="features-list-item">
                                     <i class="ri-arrow-right-s-line"></i>
-                                    <p>Donec pede justo fringilla vel nec.</p>
+                                    <p>Resultados</p>
+                                </div>
+
+                                <div class="features-list-item">
+                                    <i class="ri-arrow-right-s-line"></i>
+                                    <p>Forma del Equipo</p>
+                                </div>
+
+                                <div class="features-list-item">
+                                    <i class="ri-arrow-right-s-line"></i>
+                                    <p>Estadísticas generales</p>
+                                </div>
+
+                                <div class="features-list-item">
+                                    <i class="ri-arrow-right-s-line"></i>
+                                    <p>Y mas ...</p>
                                 </div>
 
                             </ul>
@@ -238,34 +259,39 @@
                     <div class="features-wrapper">
 
                         <figure class="features-banner">
-                            <img src="assets/img/info-banner2.svg">
+                            <img src="assets/img/undraw_greek-freak_p532.svg">
                         </figure>
 
                        <div class="features-content">
 
                             <div class="features-content-subtitle">
                                 <i class="ri-bard-fill"></i>
-                                <span>Completa para fanáticos</span>
+                                <span>DISEÑO COMPLETAMENTE RESPONSIVE</span>
                             </div>
 
                             <h3 class="features-content-title">
-                                Contamos con <strong>ligas</strong> y <strong>competencias</strong> de todo el mundo
+                                Ofrecemos un diseño <strong>full responsive</strong> para que puedas usar la página <strong>donde, cuando y como quieras</strong>
                             </h3>
 
                             <p class="features-content-text">
-                                Temporibus autem quibusdam et aut officiis debitis aut rerum a necessitatibus
+                                <!-- Temporibus autem quibusdam et aut officiis debitis aut rerum a necessitatibus -->
                             </p>
 
                             <ul class="features-list">
 
                                 <li class="features-list-item">
                                     <i class="ri-arrow-right-s-line"></i>
-                                    <p>Donec pede justo fringilla vel nec.</p>
+                                    <p>Computadoras</p>
                                 </li>
 
                                 <div class="features-list-item">
                                     <i class="ri-arrow-right-s-line"></i>
-                                    <p>Donec pede justo fringilla vel nec.</p>
+                                    <p>Tablets</p>
+                                </div>
+
+                                <div class="features-list-item">
+                                    <i class="ri-arrow-right-s-line"></i>
+                                    <p>Telefonos</p>
                                 </div>
 
                             </ul>
@@ -282,8 +308,8 @@
 
                 <div class="container">
 
-                    <h2 class="h2 section-title">Noticias</h2>
-                    <p class="section-text">Et harum quidem rerum facilis est et expedita distinctio nam libero tempore cum</p>
+                    <h2 class="h2 section-title">Últimas Noticias</h2>
+                    <p class="section-text">Noticias sobre lo ocurrido en las ligas más importantes del país (Ejemplos)</p>
 
                     <ul class="blog-list">
 
@@ -291,26 +317,32 @@
 
                             <div class="blog-card">
 
-                                <figure class="blog-banner">
-                                    <img src="assets/img/blog-img.jpg">
+                                <figure class="blog-banner" style="width: 325px; height: 200px;">
+                                    <img src="http://febamba.com/wp-content/uploads/2025/12/13122025-DSC03097-610x400.jpg">
                                 </figure>
 
-                                <div class="blog-meta">
+                                <h3 class="blog-title">Velez Campeón de la Liga Metro</h3>
+                                <p class="blog-text" style="margin-top: 5px;">En una final apasionante</p>
 
-                                    <span>
-                                        <i class="ri-calendar-line"></i>
-                                        <time datetime="2023-04-10">22 / 05 / 2023</time>
-                                    </span>
+                                <a href="#" class="blog-link-btn">
+                                    <span>Ver Más</span>
+                                    <i class="ri-arrow-right-s-line"></i>
+                                </a>
 
-                                    <span>
-                                        <i class="ri-user-6-line"></i>
-                                        <p>Admin</p>
-                                    </span>
+                            </div>
 
-                                </div>
+                        </li>
 
-                                <h3 class="blog-title">Barrida contundente</h3>
-                                <p class="blog-text">Integer ante arcu accumsan a consectetuer eget posuere mauris praesent</p>
+                        <li>
+
+                            <div class="blog-card">
+
+                                <figure class="blog-banner" style="width: 325px; height: 200px;">
+                                    <img src="http://febamba.com/wp-content/uploads/2025/12/13122025-DSC04054-610x400.jpg">
+                                </figure>
+
+                                <h3 class="blog-title">Crónica de un Triunfo Anunciado</h3>
+                                <p class="blog-text" style="margin-top: 5px;">Luego de arrasar en la fase regular, Pinocho concretó lo hecho en playoffs y se consagró campeón</p>
 
                                 <a href="#" class="blog-link-btn">
                                     <span>Ver Noticia</span>
@@ -325,60 +357,12 @@
 
                             <div class="blog-card">
 
-                                <figure class="blog-banner">
-                                    <img src="assets/img/blog-img-2.jpg">
+                                <figure class="blog-banner" style="width: 325px; height: 200px;">
+                                    <img src="http://febamba.com/wp-content/uploads/2025/12/13122025-DSC03884.jpg">
                                 </figure>
 
-                                <div class="blog-meta">
-
-                                    <span>
-                                        <i class="ri-calendar-line"></i>
-                                        <time datetime="2023-04-10">25 / 05 / 2023</time>
-                                    </span>
-
-                                    <span>
-                                        <i class="ri-user-6-line"></i>
-                                        <p>Admin</p>
-                                    </span>
-
-                                </div>
-
-                                <h3 class="blog-title">Empate que complica</h3>
-                                <p class="blog-text">Integer ante arcu accumsan a consectetuer eget posuere mauris praesent</p>
-
-                                <a href="#" class="blog-link-btn">
-                                    <span>Ver Noticia</span>
-                                    <i class="ri-arrow-right-s-line"></i>
-                                </a>
-
-                            </div>
-
-                        </li>
-
-                        <li>
-
-                            <div class="blog-card">
-
-                                <figure class="blog-banner">
-                                    <img src="assets/img/blog-img-3.jpg">
-                                </figure>
-
-                                <div class="blog-meta">
-
-                                    <span>
-                                        <i class="ri-calendar-line"></i>
-                                        <time datetime="2023-04-10">27 / 05 / 2023</time>
-                                    </span>
-
-                                    <span>
-                                        <i class="ri-user-6-line"></i>
-                                        <p>Admin</p>
-                                    </span>
-
-                                </div>
-
-                                <h3 class="blog-title">1-150?</h3>
-                                <p class="blog-text">Integer ante arcu accumsan a consectetuer eget posuere mauris praesent</p>
+                                <h3 class="blog-title">El Testimonio del MVP de la Final</h3>
+                                <p class="blog-text" style="margin-top: 5px;">Sebastián "El Rayo" Figueroa, MVP de la final de la Liga Metro compartió unas palabras con nosotros luego del histórico triunfo de Pinocho</p>
 
                                 <a href="#" class="blog-link-btn">
                                     <span>Ver Noticia</span>
@@ -399,12 +383,12 @@
 
                 <div class="container">
 
-                    <h2 class="h2 section-title">Contactanos</h2>
-                    <p class="section-text">Et harum quidem rerum facilis est et expedita distinctio nam libero tempore cum</p>
+                    <h2 class="h2 section-title">Ayudanos a mejorar</h2>
+                    <p class="section-text">Envía tu consulta o sugerencia para poder mejorar la página (sin funcionar)</p>
 
                     <div class="contact-wrapper">
 
-                        <form action="contact.php" method="post" id="form" class="contact-form">
+                        <form action="https://formspree.io/f/xzblborv" method="post" id="form" class="contact-form">
 
                             <div class="wrapper-flex">
 
@@ -433,37 +417,19 @@
                         <ul class="contact-list">
 
                             <li>
-
-                                <a href="#" class="contact-link">
+                                
+                                <a href="mailto:basquetaldia1@gmail.com" class="contact-link">
                                     <i class="ri-mail-line"></i>
-                                    <span>: ejemplo@ejemplo.com</span>
+                                    <span>: basquetaldia1@gmail.com</span>
                                 </a>
 
                             </li>
 
                             <li>
 
-                                <a href="#" class="contact-link">
+                                <a href="https://pedromiteffc.github.io/basquet-al-dia/" class="contact-link">
                                     <i class="ri-globe-line"></i>
-                                    <span>: Deporte Vivo</span>
-                                </a>
-
-                            </li>
-
-                            <li>
-
-                                <a href="#" class="contact-link">
-                                    <i class="ri-phone-line"></i>
-                                    <span>: (+54) 11 1234-5678</span>
-                                </a>
-
-                            </li>
-
-                            <li>
-
-                                <a href="#" class="contact-link">
-                                    <i class="ri-time-line"></i>
-                                    <span>: 9:00 - 18:00</span>
+                                    <span>: pedromiteffc.github.io/</span>
                                 </a>
 
                             </li>
@@ -472,7 +438,7 @@
 
                                 <a href="#" class="contact-link">
                                     <i class="ri-map-pin-line"></i>
-                                    <span>: Buenos Aires, Argentina</span>
+                                    <span>: Argentina</span>
                                 </a>
 
                             </li>
@@ -498,7 +464,7 @@
                 <div class="footer-brand">
 
                     <a href="#" class="logo">
-                        <img src="assets/img/favicon.png">
+                        <img src="assets/img/favicon.png" width="100px">
                     </a>
 
                     <p class="footer-text">Seguinos en nuestras redes!</p>
@@ -507,7 +473,7 @@
 
                         <li>
 
-                            <a href="https://www.instagram.com/" class="social-link" target="_blank">
+                            <a href="https://www.instagram.com/basquet.al.dia" class="social-link" target="_blank">
                                 <i class="ri-instagram-line"></i>
                             </a>
 
@@ -529,14 +495,6 @@
 
                         </li>
 
-                        <li>
-
-                            <a href="https://github.com/pedromiteffc" class="social-link" target="_blank">
-                                <i class="ri-github-line"></i>
-                            </a>
-
-                        </li>
-
                     </ul>
 
                 </div>
@@ -546,82 +504,82 @@
                     <ul class="footer-list">
 
                         <li>
-                            <p class="footer-item-title">About Us</p>
+                            <p class="footer-item-title">Competencias</p>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Works</a>
+                            <a href="#" class="footer-link">Liga Nacional</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Strategy</a>
+                            <a href="#" class="footer-link">Liga Argentina</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Releases</a>
+                            <a href="ligafederal.html" class="footer-link">Liga Federal</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Press</a>
+                            <a href="#" class="footer-link">Liga Proximo</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Mission</a>
+                            <a href="#" class="footer-link">Liga Formativa U21</a>
                         </li>
 
                     </ul>
 
-                    <ul class="footer-list">
+                    <!-- <ul class="footer-list">
 
                         <li>
-                            <p class="footer-item-title">Customers</p>
+                            <p class="footer-item-title">alguna idea? jaja</p>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Tranding</a>
+                            <a href="#" class="footer-link">alguna pelotudez?</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Popular</a>
+                            <a href="#" class="footer-link">alguna pelotudez?</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Customers</a>
+                            <a href="#" class="footer-link">alguna pelotudez?</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Features</a>
+                            <a href="#" class="footer-link">alguna pelotudez?</a>
                         </li>
 
-                    </ul>
+                    </ul> -->
 
-                    <ul class="footer-list">
-
-                        <li>
-                            <p class="footer-item-title">Support</p>
-                        </li>
+                    <!-- <ul class="footer-list">
 
                         <li>
-                            <a href="#" class="footer-link">Developers</a>
+                            <p class="footer-item-title">Links Rápidos</p>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Support</a>
+                            <a href="index.html" class="footer-link">Home</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Customer Service</a>
+                            <a href="furbo.html" class="footer-link">Fútbol</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Get Started</a>
+                            <a href="basque.html" class="footer-link">Basquet</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Guide</a>
+                            <a href="#" class="footer-link">BET 365</a>
                         </li>
 
-                    </ul>
+                        <li>
+                            <a href="#" class="footer-link">1XBET</a>
+                        </li>
+
+                    </ul> -->
 
                 </div>
 
@@ -637,7 +595,7 @@
 
                     <p class="copyright">
                         Desarrollado por
-                        <a href="https://github.com/pedromiteffc" target="_blank">Pedro Miteff</a>.
+                        <a href="https://www.instagram.com/pedro.miteff" target="_blank"> Pedro Miteff Canal </a>.
                     </p>
 
                 </center>
@@ -648,7 +606,9 @@
 
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <!-- <script src="assets/js/main.js"></script> -->
+    <script src="assets/js/principal.js"></script>
+
     
 </body>
 </html>
