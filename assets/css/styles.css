@@ -140,7 +140,6 @@ body { background-color: #fff; }
     background: #fff;
     padding-block: 20px;
     box-shadow: 0 1px 2px hsla(0, 0%, 0%, .05);
-    /* Altura ajustada para centrar verticalmente (20px padding + 50px logo + 20px padding) */
     height: 90px; 
     overflow: hidden;
     transition: 0.5s ease-in-out;
@@ -149,16 +148,18 @@ body { background-color: #fff; }
 
 .header.active { height: 450px; }
 
-/* --- CENTRADO EN MÓVIL (CORREGIDO) --- */
+/* --- CONTENEDOR DEL HEADER (SOLUCIÓN) --- */
 .header .container {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center;     /* Centra verticalmente */
-    gap: 30px;               /* Espacio entre Logo y Botón */
-    height: 100%;            /* Ocupa toda la altura del header */
+    justify-content: space-between; /* Extremos: Logo Izq - Botón Der */
+    align-items: center;     
+    /* Altura FIJA para la barra de iconos. 
+       90px (header) - 40px (padding) = 50px libres. 
+       Esto evita que "bailen" cuando el header crece. */
+    height: 50px;            
 }
 
-/* --- TAMAÑO DE LOGO HEADER (SOLUCIÓN CSS) --- */
+/* --- TAMAÑO DE LOGO HEADER --- */
 .header .logo img {
     width: 50px;
     object-fit: contain;
@@ -169,13 +170,13 @@ body { background-color: #fff; }
 .navbar {
     position: absolute;
     width: 100%;
-    top: 90px; /* Coincide con la altura del header */
+    top: 90px; /* Justo debajo de la barra fija */
     left: 0;
     padding-inline: 30px;
     visibility: hidden;
     opacity: 0;
     transition: 0.5s ease-in-out;
-    text-align: center; /* Centra los links en móvil */
+    text-align: center; 
 }
 
 .header.active .navbar {
@@ -194,7 +195,6 @@ body { background-color: #fff; }
 
 /* --- HERO SECTION --- */
 .hero {
-    /* Padding superior aumentado para compensar el header fijo de 90px */
     padding: 150px 0 var(--section-padding);
     background: var(--ghost-white-1);
 }
@@ -466,7 +466,7 @@ footer {
 .footer-brand { margin-bottom: 60px; }
 footer .logo { margin-bottom: 25px; }
 
-/* --- TAMAÑO DE LOGO FOOTER (SOLUCIÓN CSS) --- */
+/* --- TAMAÑO DE LOGO FOOTER --- */
 footer .logo img {
     width: 100px;
     object-fit: contain;
@@ -543,15 +543,16 @@ footer .logo img {
     .header {
         overflow: visible;
         padding-block: 0;
-        height: unset; /* Restaura altura automática en PC */
+        height: unset;
     }
 
     .header.active { height: unset; }
 
-    /* --- RESTAURAR LAYOUT EN ESCRITORIO --- */
+    /* Restaurar altura automática en PC para que quepa el menú horizontal */
     .header .container {
-        justify-content: space-between; /* Logo izquierda, Menú derecha */
+        justify-content: space-between; 
         gap: 0;
+        height: auto; /* IMPORTANTE: Reset de altura para desktop */
     }
 
     .menu-toggle-btn { display: none; }
@@ -607,7 +608,7 @@ footer .logo img {
     .footer-list { width: 170px; }
 }
 
-/* --- ESTILOS ADICIONALES (De tu archivo original) --- */
+/* --- ESTILOS ADICIONALES --- */
 .input { width: 100%; height: 50px; margin-top: 20px; }
 .input select { width: 100%; height: 100%; border: 1px solid #ccc; border-radius: 6px; padding: 0 15px; outline: none; font-size: 16px; font-family: 'quicksand'; }
 .input input { border: 1px solid #ccc; border-radius: 6px; width: 100%; height: 100%; padding: 0 20px; }
