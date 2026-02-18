@@ -14,6 +14,7 @@ const firebaseConfig =
 
 const app = initializeApp(firebaseConfig)
 const dbFire = getFirestore(app)
+
 const COLLECTION_NAME = "liga_nacional"
 const defaultLogo = "assets/img/favicon.png"
 
@@ -21,7 +22,7 @@ let localDB = { teams: [], matches: [] }
 
 async function initApp() 
 {
-    console.log("Cargando Liga Nacional...")
+    console.log("Iniciando carga de Liga Nacional...")
 
     try 
     {
@@ -32,21 +33,22 @@ async function initApp()
         {
             localDB = docSnap.data()
             console.log("Datos recibidos:", localDB)
+
             renderAllData()
         } 
         
         else 
         {
-            console.log("No hay datos.")
-            document.getElementById('matches-container').innerHTML = '<p style="text-align:center; padding:20px;">Sin datos cargados.</p>'
+            console.log("Base de datos vacía.")
+            document.getElementById('matches-container').innerHTML = '<p style="text-align:center; padding:20px;">No hay datos cargados.</p>'
             document.getElementById('standings-body').innerHTML = '<tr><td colspan="8">Sin datos...</td></tr>'
         }
 
     } 
-    
+
     catch (error) 
     {
-        console.error("Error:", error)
+        console.error("Error conectando a Firebase:", error)
     }
 
 }
@@ -66,7 +68,7 @@ function renderMatches(matches, allTeams)
     
     if (!matches || matches.length === 0) 
     { 
-        container.innerHTML = '<p style="text-align:center; padding:20px; color:#999;">No hay partidos cargados.</p>'
+        container.innerHTML = '<p style="text-align:center; padding:20px; color:#999;">No hay partidos encontrados.</p>'
         return
     }
 
@@ -79,6 +81,7 @@ function renderMatches(matches, allTeams)
     })
     
     const rounds = Object.keys(grouped).sort()
+
     let isFirst = true
 
     rounds.forEach(round => 
@@ -93,10 +96,13 @@ function renderMatches(matches, allTeams)
         {
             const homeTeam = allTeams.find(t => t.name === m.home)
             const awayTeam = allTeams.find(t => t.name === m.away)
+            
             const hLogo = homeTeam ? homeTeam.logo : defaultLogo
             const aLogo = awayTeam ? awayTeam.logo : defaultLogo
-            const hCode = homeTeam ? homeTeam.code : m.home.substring(0,3).toUpperCase()
-            const aCode = awayTeam ? awayTeam.code : m.away.substring(0,3).toUpperCase()
+            
+            const hCode = homeTeam && homeTeam.code ? homeTeam.code : m.home.substring(0,3).toUpperCase()
+            const aCode = awayTeam && awayTeam.code ? awayTeam.code : m.away.substring(0,3).toUpperCase()
+
             const dateInfo = formatDateInfo(m.date)
 
             let hClass = 'team-score', aClass = 'team-score'
@@ -112,11 +118,17 @@ function renderMatches(matches, allTeams)
             <div class="match-card">
                 <div class="match-content">
                     <div class="team-row">
-                        <div class="team-info local"><img src="${hLogo}" class="team-logo-match"><span class="team-name-match">${hCode}</span></div>
+                        <div class="team-info local">
+                            <img src="${hLogo}" class="team-logo-match">
+                            <span class="team-name-match">${hCode}</span>
+                        </div>
                         <span class="${hClass}">${m.homePts}</span>
                     </div>
                     <div class="team-row">
-                        <div class="team-info local"><img src="${aLogo}" class="team-logo-match"><span class="team-name-match">${aCode}</span></div>
+                        <div class="team-info local">
+                            <img src="${aLogo}" class="team-logo-match">
+                            <span class="team-name-match">${aCode}</span>
+                        </div>
                         <span class="${aClass}">${m.awayPts}</span>
                     </div>
                 </div>
@@ -166,28 +178,25 @@ function renderStandings(teams, matches)
         {
             const hIdx = standings.findIndex(s => s.name === m.home)
             const aIdx = standings.findIndex(s => s.name === m.away)
-
+            
             if (hIdx !== -1 && aIdx !== -1) 
             {
                 standings[hIdx].pj++; standings[aIdx].pj++
                 standings[hIdx].pf += hPts; standings[hIdx].pc += aPts
                 standings[aIdx].pf += aPts; standings[aIdx].pc += hPts
-
+                
                 if (hPts > aPts) 
-                {
-                    standings[hIdx].pg++
-                    standings[hIdx].pts += 2
-                    standings[aIdx].pp++
-                    standings[aIdx].pts += 1
-                }
-
+                { 
+                    standings[hIdx].pg++; standings[hIdx].pts += 2
+                    standings[aIdx].pp++; standings[aIdx].pts += 1
+                } 
+                
                 else 
                 { 
-                    standings[aIdx].pg++
-                    standings[aIdx].pts += 2
-                    standings[hIdx].pp++
-                    standings[hIdx].pts += 1
+                    standings[aIdx].pg++; standings[aIdx].pts += 2
+                    standings[hIdx].pp++; standings[hIdx].pts += 1
                 }
+
             }
 
         }
@@ -202,28 +211,46 @@ function renderStandings(teams, matches)
 
     standings.forEach((t, i) => 
     {
+        const position = i + 1
+        let positionClass = ""
+
+        if (position <= 4) 
+        {
+            positionClass = "pos-direct"
+        } 
+        else if (position >= 5 && position <= 12)
+        {
+            positionClass = "pos-playin"
+        } 
+        else if (position >= 18 && position <= 19) 
+        {
+            positionClass = "pos-playout"
+        }
+
         const dg = t.pf - t.pc
         let dgClass = 'dg-neu', dgText = dg
 
         if(dg > 0) 
         { 
             dgClass = 'dg-pos' 
-            dgText = '+' + dg; 
+            dgText = '+' + dg 
         }
 
         if(dg < 0) 
         { 
-            dgClass = 'dg-neg'
+            dgClass = 'dg-neg' 
         }
         
+        const codeName = t.code ? t.code : t.name.substring(0,3).toUpperCase()
+
         const row = `
             <tr>
-                <td><div class="cell-pos-box">${i + 1}</div></td>
+                <td class="${positionClass}" style="font-weight:bold; text-align:center;">${position}</td>
                 <td class="t-left">
                     <div class="team-cell">
                         <img src="${t.logo}" class="t-logo">
                         <span class="t-name-full">${t.name}</span>
-                        <span class="t-name-code">${t.code}</span>
+                        <span class="t-name-code">${codeName}</span>
                     </div>
                 </td>
                 <td class="col-pj">${t.pj}</td>
@@ -232,9 +259,12 @@ function renderStandings(teams, matches)
                 <td>${t.pf}</td>
                 <td>${t.pc}</td>
                 <td class="${dgClass}">${dgText}</td>
-            </tr>`;
+            </tr>`
+
         tbody.innerHTML += row
+
     })
+
 }
 
 function formatDateInfo(dateString) 
