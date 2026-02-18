@@ -2,7 +2,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebas
 import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"
 
-const firebaseConfig = {
+const firebaseConfig = 
+{
     apiKey: "AIzaSyAZsBvyg9LV72Qv1_bwXKvISJ72rBRD4E8",
     authDomain: "basquet-al-dia.firebaseapp.com",
     projectId: "basquet-al-dia",
@@ -19,36 +20,45 @@ const auth = getAuth(app)
 let db = { teams: [], matches: [] }
 let tempImageBase64 = ""
 
-window.login = () => {
-
+window.login = () => 
+{
     const email = document.getElementById('adminEmail').value
     const pass = document.getElementById('adminPass').value
-    if(!email || !pass) return
+    if(!email || !pass) return;
     
     signInWithEmailAndPassword(auth, email, pass)
-        .catch((error) => {
-            document.getElementById('loginError').style.display = 'block'
-            console.error(error)
-        })
+    .catch((error) => 
+    {
+        document.getElementById('loginError').style.display = 'block'
+        console.error(error)
+    })
+
 }
 
-window.logout = () => {
+window.logout = () => 
+{
     signOut(auth)
 }
 
-onAuthStateChanged(auth, (user) => {
-    if (user) {
+onAuthStateChanged(auth, (user) => 
+{
+    if (user) 
+    {
         document.getElementById('login-overlay').classList.add('hidden')
         document.getElementById('app-container').classList.remove('hidden')
         loadDB()
-    } else {
+    } 
+    
+    else 
+    {
         document.getElementById('login-overlay').classList.remove('hidden')
         document.getElementById('app-container').classList.add('hidden')
     }
+
 })
 
-async function loadDB() {
-    
+async function loadDB() 
+{
     try 
     {
 
@@ -59,6 +69,7 @@ async function loadDB() {
         {
             db = docSnap.data()
         } 
+        
         else 
         {
             db = { teams: [], matches: [] }
@@ -66,9 +77,8 @@ async function loadDB() {
         }
 
         updateUI()
-
     } 
-
+    
     catch(e) 
     {
         console.error("Error cargando datos:", e)
@@ -82,8 +92,9 @@ async function saveDB()
     {
         await setDoc(doc(dbFire, "liga_federal", "data_v1"), db)
         updateUI()
+        console.log("Sincronización con nube exitosa.")
     } 
-    
+
     catch (e) 
     {
         alert("Error al guardar en la nube: " + e.message)
@@ -91,7 +102,10 @@ async function saveDB()
 
 }
 
-const structure = { 
+window.internalSaveDB = saveDB
+
+const structure = 
+{ 
     "NEA": ["Unica"], 
     "NOA": ["Unica"], 
     "Sudeste": ["A", "B"], 
@@ -101,7 +115,8 @@ const structure = {
     "Metropolitana": ["A", "B", "C"] 
 }
 
-window.processImage = (input) => {
+window.processImage = (input) => 
+{
 
     if (input.files && input.files[0]) 
     {
@@ -110,7 +125,6 @@ window.processImage = (input) => {
 
         reader.onload = function(e) 
         {
-
             const img = new Image()
             img.src = e.target.result
 
@@ -118,7 +132,7 @@ window.processImage = (input) => {
             {
                 const canvas = document.createElement('canvas')
                 const ctx = canvas.getContext('2d')
-                const MAX_SIZE = 150
+                const MAX_SIZE = 150;
                 let w = img.width, h = img.height
                 if (w > h) { if (w > MAX_SIZE) { h *= MAX_SIZE / w; w = MAX_SIZE; } } 
                 else { if (h > MAX_SIZE) { w *= MAX_SIZE / h; h = MAX_SIZE; } }
@@ -133,19 +147,18 @@ window.processImage = (input) => {
         }
 
         reader.readAsDataURL(input.files[0])
-
     }
 
 }
 
 window.updatePreviewFromUrl = (url) => { if(url) { document.getElementById('previewImg').src = url; tempImageBase64 = ""; } }
 
-window.updateZoneSelect = (confId, zoneId) => {
+window.updateZoneSelect = (confId, zoneId) => 
+{
 
     const confSelect = document.getElementById(confId)
     const zoneSelect = document.getElementById(zoneId)
     const selectedConf = confSelect.value
-
     zoneSelect.innerHTML = '<option value="">Seleccionar...</option>'
     zoneSelect.disabled = true
 
@@ -153,8 +166,7 @@ window.updateZoneSelect = (confId, zoneId) => {
     {
         zoneSelect.disabled = false
 
-        structure[selectedConf].forEach(z => 
-        {
+        structure[selectedConf].forEach(z => {
             const opt = document.createElement('option')
             opt.value = z
             opt.textContent = z === "Unica" ? "Zona Única" : "Zona " + z
@@ -176,15 +188,17 @@ window.addTeam = () =>
     const defaultLogo = "https://cdn-icons-png.flaticon.com/512/889/889455.png"
     const logo = tempImageBase64 || document.getElementById('teamLogoUrl').value || defaultLogo
 
-    if(!name || !code || !conf || !zone) return alert("Faltan datos")
+    if(!name || !code || !conf || !zone) return alert("Faltan datos obligatorios")
+    
     const fullZone = `${conf} ${zone}`
     db.teams.push({ id: Date.now(), name, code, zone: fullZone, logo })
-    saveDB()
-
+    window.internalSaveDB()
+    
     document.getElementById('teamName').value = ''
     document.getElementById('teamCode').value = ''
     document.getElementById('previewImg').src = defaultLogo
     tempImageBase64 = ""
+
 }
 
 window.editTeam = (id) => 
@@ -199,7 +213,7 @@ window.editTeam = (id) =>
     document.getElementById('teamZone').value = zone
     document.getElementById('previewImg').src = t.logo
     if(t.logo.startsWith('data:')) tempImageBase64 = t.logo
-    window.deleteItem('team', id)
+    window.deleteItem('team', id);
     document.getElementById('equipos').scrollIntoView({behavior: 'smooth'})
 }
 
@@ -231,7 +245,7 @@ window.addMatch = () =>
     const time = document.getElementById('matchTime').value
     const stadium = document.getElementById('matchStadium').value
 
-    if(!home || !away || !date) return alert("Faltan datos")
+    if(!home || !away || !date) return alert("Faltan datos del partido")
 
     const match = 
     {
@@ -243,11 +257,10 @@ window.addMatch = () =>
     }
 
     db.matches.push(match)
-    saveDB()
+    window.internalSaveDB()
     
     document.getElementById('homeScore').value = ''
     document.getElementById('awayScore').value = ''
-
 }
 
 window.editMatch = (id) => 
@@ -267,7 +280,7 @@ window.editMatch = (id) =>
     document.getElementById('awayTeam').value = m.away
     document.getElementById('homeScore').value = m.homePts === '-' ? '' : m.homePts
     document.getElementById('awayScore').value = m.awayPts === '-' ? '' : m.awayPts
-    window.deleteItem('match', id)
+    window.deleteItem('match', id);
     document.getElementById('partidos').scrollIntoView({behavior: 'smooth'})
 }
 
@@ -275,7 +288,7 @@ window.deleteItem = (type, id) =>
 {
     if(type === 'team') db.teams = db.teams.filter(t => t.id !== id)
     if(type === 'match') db.matches = db.matches.filter(m => m.id !== id)
-    saveDB()
+    window.internalSaveDB()
 }
 
 function updateUI() 
@@ -323,7 +336,9 @@ function updateUI()
                 <button class="action-btn btn-delete" onclick="deleteItem('match', ${m.id})" title="Borrar">🗑️</button>
             </div>
         </div>`
+
     })
+
 }
 
 window.showTab = (id) => 
@@ -336,11 +351,11 @@ window.showTab = (id) =>
 
 window.clearDB = () => 
 {
-    
+
     if(confirm("¿BORRAR TODA LA BASE DE DATOS EN LA NUBE?")) 
     {
         db = { teams: [], matches: [] }
-        saveDB()
+        window.internalSaveDB()
     }
 
 }
