@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración - Liga Federal</title>
+    <title>Panel Admin - Liga Federal</title>
     
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/admin.css">
@@ -14,200 +15,196 @@
 </head>
 <body>
 
-<div id="login-overlay">
+    <div id="login-overlay">
 
-    <div class="login-box">
+        <div class="login-box">
 
-        <h2 style="color:var(--primary); margin-bottom:20px;">Acceso Administrador</h2>
+            <h2 style="color:var(--primary); margin-bottom:20px;">Acceso Administrador</h2>
 
-        <div class="form-group">
-            <input type="email" id="adminEmail" placeholder="Correo electrónico">
+            <div class="form-group">
+                <input type="email" id="adminEmail" placeholder="Correo electrónico">
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="adminPass" placeholder="Contraseña">
+            </div>
+
+            <button class="save-btn" onclick="login()">Ingresar</button>
+            <p id="loginError" style="color:red; margin-top:10px; display:none;">Error de credenciales</p>
+
         </div>
 
-        <div class="form-group">
-            <input type="password" id="adminPass" placeholder="Contraseña">
+    </div>
+
+    <div class="container hidden" id="app-container">
+
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h1>⚙️ Admin Federal</h1>
+            <button onclick="logout()" style="background:none; color:red; border:1px solid red; padding:5px 10px; border-radius:4px; font-size:0.8rem; cursor:pointer;">Cerrar Sesión</button>
         </div>
-
-        <button class="save-btn" onclick="login()">Ingresar</button>
-        <p id="loginError" style="color:red; margin-top:10px; display:none;">Error de credenciales</p>
-
-    </div>
-
-</div>
-
-<div class="container hidden" id="app-container">
-
-    <div style="display:flex; justify-content:space-between; align-items:center;">
-        <h1>⚙️ Panel de Control</h1>
-        <button onclick="logout()" style="background:none; color:red; border:1px solid red; padding:5px 10px; border-radius:4px; font-size:0.8rem; cursor:pointer;">Cerrar Sesión</button>
-    </div>
-    
-    <div class="tabs">
-        <div class="tab active" onclick="showTab('equipos')">Equipos</div>
-        <div class="tab" onclick="showTab('partidos')">Partidos</div>
-        <div class="tab" onclick="clearDB()" style="color:#e74c3c; margin-left:auto;">Borrar DB</div>
-    </div>
-
-    <div id="equipos" class="panel active">
-
-        <h2>Gestionar Equipos</h2>
         
-        <div style="display:flex; gap:15px;">
-
-            <div class="form-group" style="flex:2;">
-                <label>Nombre del Equipo</label>
-                <input type="text" id="teamName" placeholder="Ej: Club Central">
-            </div>
-
-            <div class="form-group" style="flex:1;">
-                <label>Siglas (XXX)</label>
-                <input type="text" id="teamCode" placeholder="CEN" maxlength="3" style="text-transform:uppercase; text-align:center; font-weight:bold;">
-            </div>
-
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('equipos')">Equipos</div>
+            <div class="tab" onclick="showTab('partidos')">Partidos</div>
+            <div class="tab" onclick="clearDB()" style="color:#e74c3c; margin-left:auto;">Borrar DB</div>
         </div>
 
-        <div style="display:flex; gap:15px;">
+        <div id="equipos" class="panel active">
 
-            <div class="form-group" style="flex:1;">
+            <h2>Cargar Nuevo Equipo</h2>
+            
+            <div style="display:flex; gap:15px;">
 
-                <label>1. Conferencia</label>
+                <div class="form-group" style="flex:2;">
+                    <label>Nombre del Equipo</label>
+                    <input type="text" id="teamName" placeholder="Ej: Club Central">
+                </div>
 
-                <select id="teamConf" onchange="updateZoneSelect('teamConf', 'teamZone')">
-                    <option value="">Seleccionar...</option>
-                    <option value="NEA">NEA</option>
-                    <option value="NOA">NOA</option>
-                    <option value="Sudeste">Sudeste</option>
-                    <option value="Sur">Sur</option>
-                    <option value="Centro">Centro</option>
-                    <option value="Litoral">Litoral</option>
-                    <option value="Metropolitana">Metropolitana</option>
-                </select>
-
-            </div>
-
-            <div class="form-group" style="flex:1;">
-
-                <label>2. Zona</label>
-
-                <select id="teamZone" disabled>
-                    <option value="">Esperando conferencia...</option>
-                </select>
-
-            </div>
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Escudo (Sube archivo PNG/JPG)</label>
-
-            <div class="file-input-wrapper">
-
-                <img id="previewImg" class="img-preview">
-
-                <div style="flex:1;">
-                    <input type="file" id="teamLogoFile" accept="image/*" onchange="processImage(this)">
-                    <div style="text-align:center; font-size:0.8rem; margin:8px 0; color:#aaa; font-weight:bold;">— O —</div>
-                    <input type="text" id="teamLogoUrl" placeholder="https://..." onchange="updatePreviewFromUrl(this.value)">
+                <div class="form-group" style="flex:1;">
+                    <label>Siglas (XXX)</label>
+                    <input type="text" id="teamCode" placeholder="CEN" maxlength="3" style="text-transform:uppercase; text-align:center; font-weight:bold;">
                 </div>
 
             </div>
 
-        </div>
-
-        <button class="save-btn" onclick="addTeam()">Guardar Equipo</button>
-
-        <h3 style="margin-top:30px; color:#666; font-size:1rem;">Lista de Equipos</h3>
-        <div id="teamList" class="list-container">Cargando...</div>
-
-    </div>
-
-    <div id="partidos" class="panel">
-
-        <h2>Gestionar Partidos</h2>
-        
-        <div style="display:flex; gap:15px; background:#f0f4ff; padding:15px; border-radius:8px; margin-bottom:20px;">
-
-            <div class="form-group" style="flex:1; margin-bottom:0;">
-
-                <label>Filtro Conferencia</label>
-
-                <select id="matchConf" onchange="updateZoneSelect('matchConf', 'matchZone')">
-                    <option value="">Seleccionar...</option>
-                    <option value="NEA">NEA</option>
-                    <option value="NOA">NOA</option>
-                    <option value="Sudeste">Sudeste</option>
-                    <option value="Sur">Sur</option>
-                    <option value="Centro">Centro</option>
-                    <option value="Litoral">Litoral</option>
-                    <option value="Metropolitana">Metropolitana</option>
-                </select>
-
-            </div>
-
-            <div class="form-group" style="flex:1; margin-bottom:0;">
-
-                <label>Filtro Zona</label>
-
-                <select id="matchZone" onchange="updateTeamSelects()" disabled>
-                    <option value="">...</option>
-                </select>
-
-            </div>
-
-        </div>
-
-        <div class="form-group">
-            <label>Jornada / Fecha</label>
-            <input type="text" id="matchRound" placeholder="Ej: Jornada 1">
-        </div>
-        
-        <div style="display:flex; gap:15px;">
-
-            <div class="form-group" style="flex:1">
-
-                <label>Local</label>
-                <select id="homeTeam"></select>
-                <input type="number" id="homeScore" placeholder="-" style="margin-top:5px; text-align:center;">
-
-            </div>
-
-            <div class="form-group" style="flex:1">
-
-                <label>Visitante</label>
-                <select id="awayTeam"></select>
-                <input type="number" id="awayScore" placeholder="-" style="margin-top:5px; text-align:center;">
-
-            </div>
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Fecha y Hora</label>
-
             <div style="display:flex; gap:15px;">
-                <input type="date" id="matchDate" style="flex:1;"> 
-                <input type="time" id="matchTime" style="flex:1;">
+
+                <div class="form-group" style="flex:1;">
+
+                    <label>1. Conferencia</label>
+
+                    <select id="teamConf" onchange="updateZoneSelect('teamConf', 'teamZone')">
+                        <option value="">Seleccionar...</option>
+                        <option value="NEA">NEA</option>
+                        <option value="NOA">NOA</option>
+                        <option value="Sudeste">Sudeste</option>
+                        <option value="Sur">Sur</option>
+                        <option value="Centro">Centro</option>
+                        <option value="Litoral">Litoral</option>
+                        <option value="Metropolitana">Metropolitana</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group" style="flex:1;">
+
+                    <label>2. Zona</label>
+
+                    <select id="teamZone" disabled>
+                        <option value="">Esperando conferencia...</option>
+                    </select>
+
+                </div>
+
             </div>
 
+            <div class="form-group">
+
+                <label>Escudo (Sube archivo PNG/JPG)</label>
+
+                <div class="file-input-wrapper">
+
+                    <img id="previewImg" class="img-preview">
+
+                    <div style="flex:1;">
+                        <input type="file" id="teamLogoFile" accept="image/*" onchange="processImage(this)">
+                        <div style="text-align:center; font-size:0.8rem; margin:8px 0; color:#aaa; font-weight:bold;">— O —</div>
+                        <input type="text" id="teamLogoUrl" placeholder="https://..." onchange="updatePreviewFromUrl(this.value)">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button class="save-btn" onclick="addTeam()">Guardar en Base de Datos</button>
+            
+            <h3 style="margin-top:30px; color:#666; font-size:1rem;">Equipos en Base de Datos:</h3>
+            <div id="teamList" class="list-container">Cargando...</div>
+
         </div>
 
-        <div class="form-group">
-            <label>Estadio</label>
-            <input type="text" id="matchStadium" placeholder="Nombre del estadio">
-        </div>
+        <div id="partidos" class="panel">
 
-        <button class="save-btn" onclick="addMatch()">Guardar Partido</button>
+            <h2>Cargar Nuevo Partido</h2>
+            
+            <div style="display:flex; gap:15px; background:#f0f4ff; padding:15px; border-radius:8px; margin-bottom:20px;">
+
+                <div class="form-group" style="flex:1; margin-bottom:0;">
+
+                    <label>Filtro Conferencia</label>
+
+                    <select id="matchConf" onchange="updateZoneSelect('matchConf', 'matchZone')">
+                        <option value="">Seleccionar...</option>
+                        <option value="NEA">NEA</option>
+                        <option value="NOA">NOA</option>
+                        <option value="Sudeste">Sudeste</option>
+                        <option value="Sur">Sur</option>
+                        <option value="Centro">Centro</option>
+                        <option value="Litoral">Litoral</option>
+                        <option value="Metropolitana">Metropolitana</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group" style="flex:1; margin-bottom:0;">
+
+                    <label>Filtro Zona</label>
+
+                    <select id="matchZone" onchange="updateTeamSelects()" disabled>
+                        <option value="">...</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Jornada / Fecha</label>
+                <input type="text" id="matchRound" placeholder="Ej: Jornada 1">
+            </div>
+            
+            <div style="display:flex; gap:15px;">
+
+                <div class="form-group" style="flex:1">
+                    <label>Local</label>
+                    <select id="homeTeam"></select>
+                    <input type="number" id="homeScore" placeholder="-" style="margin-top:5px; text-align:center;">
+                </div>
+
+                <div class="form-group" style="flex:1">
+                    <label>Visitante</label>
+                    <select id="awayTeam"></select>
+                    <input type="number" id="awayScore" placeholder="-" style="margin-top:5px; text-align:center;">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Fecha y Hora</label>
+
+                <div style="display:flex; gap:15px;">
+                    <input type="date" id="matchDate" style="flex:1;"> 
+                    <input type="time" id="matchTime" style="flex:1;">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Estadio</label>
+                <input type="text" id="matchStadium" placeholder="Nombre del estadio">
+            </div>
+
+            <button class="save-btn" onclick="addMatch()">Guardar en Base de Datos</button>
+            
+            <h3 style="margin-top:30px; color:#666; font-size:1rem;">Partidos en Base de Datos:</h3>
+            <div id="matchList" class="list-container">Cargando...</div>
+
+        </div>
         
-        <h3 style="margin-top:30px; color:#666; font-size:1rem;">Lista de Partidos</h3>
-        <div id="matchList" class="list-container">Cargando...</div>
-
     </div>
-    
-</div>
 
-<script type="module" src="assets/js/admin.js"></script>
+    <script type="module" src="assets/js/admin.js"></script>
 
 </body>
 </html>
