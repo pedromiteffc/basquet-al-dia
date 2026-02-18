@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liga Nacional - Basquet Al Día</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/federal.css">
 
-    <!-- FAVICON -->
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -55,7 +53,7 @@
                         <h1 class="h1 hero-title">Liga Nacional</h1>
                         <p class="form-text" style="align-content: center;">
                             <span><i class="ri-error-warning-line"></i></span>
-                            LA MÁXIMA CATEGORÍA DEL BASQUET ARGENTINO. CONSULTA TABLA Y RESULTADOS AQUÍ.
+                            LA PRIMERA CATEGORÍA DEL BASQUET ARGENTINO. CONSULTA TABLA Y RESULTADOS AQUÍ.
                         </p>
                     </div>
 
@@ -73,9 +71,12 @@
                         
                         <div class="stat-card">
 
-                            <h3 class="card-header-title">Resultados</h3>
+                            <div class="card-header-row">
+                                <h3 class="card-header-title">Resultados</h3>
+                            </div>
+
                             <div id="matches-container">
-                                <p style="text-align:center; color:#888;">Cargando resultados...</p>
+                                <p style="text-align:center; color:#888; padding: 20px;">Cargando resultados...</p>
                             </div>
 
                         </div>
@@ -111,6 +112,22 @@
 
                             </div>
 
+                            <div class="table-legend">
+
+                                <div class="legend-item">
+                                    <span class="dot dot-playoff"></span> Clasif. Playoffs (1-4)
+                                </div>
+
+                                <div class="legend-item">
+                                    <span class="dot dot-playin"></span> Clasif. PlayIn (5-12)
+                                </div>
+
+                                <div class="legend-item">
+                                    <span class="dot dot-playout"></span> PlayOut (18-19)
+                                </div>
+
+                            </div>
+
                         </div>
 
                     </div>
@@ -120,10 +137,9 @@
             </section>
 
         </article>
-
+        
     </main>
 
-    <!-- JAVASCRIPT -->
     <script type="module" src="assets/js/liganacional.js"></script>
     <script src="assets/js/principal.js"></script>
     
