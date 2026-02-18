@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liga Federal - Basquet Al Día</title>
 
+    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/federal.css">
 
+    <!-- FAVICON -->
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -21,43 +22,20 @@
 
         <div class="container">
 
-            <a href="index.html" class="logo">
-                <img src="assets/img/favicon.png" width="50px">
-            </a>
-    
-            <button class="menu-toggle-btn" id="menu-toggle-btn" data-nav-toggle-btn>
-                <i class="ri-menu-line"></i>
-            </button>
+            <a href="index.html" class="logo"><img src="assets/img/favicon.png" width="50px"></a>
+            <button class="menu-toggle-btn" id="menu-toggle-btn" data-nav-toggle-btn><i class="ri-menu-line"></i></button>
 
             <nav class="navbar">
 
                 <ul class="navbar-list">
-
-                    <li>
-                        <a href="liganacional.html" class="navbar-link">Liga Nacional</a>
-                    </li>
-
-                    <li>
-                        <a href="ligaargentina.html" class="navbar-link">Liga Argentina</a>
-                    </li>
-
-                    <li>
-                        <a href="ligafederal.html" class="navbar-link">Liga Federal</a>
-                    </li>
-
-                    <li>
-                        <a href="ligaproximo.html" class="navbar-link">Liga Proximo</a>
-                    </li>
-
-                    <li>
-                        <a href="formativau21.html" class="navbar-link">Liga Formativa U21</a>
-                    </li>
-
+                    <li><a href="liganacional.html" class="navbar-link">Liga Nacional</a></li>
+                    <li><a href="ligaargentina.html" class="navbar-link">Liga Argentina</a></li>
+                    <li><a href="ligafederal.html" class="navbar-link">Liga Federal</a></li>
+                    <li><a href="ligaproximo.html" class="navbar-link">Liga Proximo</a></li>
+                    <li><a href="formativau21.html" class="navbar-link">Liga Formativa U21</a></li>
                 </ul>
 
-                <div class="header-actions">
-                    <a href="https://www.instagram.com/basquet.al.dia" target="_blank" class="header-action-link">INSTAGRAM</a>
-                </div>
+                <div class="header-actions"><a href="https://www.instagram.com/basquet.al.dia" target="_blank" class="header-action-link">INSTAGRAM</a></div>
 
             </nav>
 
@@ -78,7 +56,7 @@
                         <h1 class="h1 hero-title">Liga Federal</h1>
                         <p class="form-text" style="align-content: center;">
                             <span><i class="ri-error-warning-line"></i></span>
-                            LA TERCERA CATEGORÍA DEL BASQUET ARGENTINO, 92 EQUIPOS A LO LARGO Y ANCHO DEL PAÍS COMPITEN POR EL ASCENSO A LA LIGA ARGENTINA. CONSULTA TABLA Y RESULTADOS AQUÍ
+                            LA TERCERA CATEGORÍA DEL BASQUET ARGENTINO. CONSULTA TABLA Y RESULTADOS AQUÍ.
                         </p>
 
                     </div>
@@ -97,7 +75,7 @@
 
                         <div class="custom-select-wrapper">
 
-                            <label for="conferenceSelect">1. CONFERENCIA</label>
+                            <label for="conferenceSelect">Seleccionar CONFERENCIA</label>
 
                             <select id="conferenceSelect" class="custom-select" onchange="updateZoneOptions()">
                                 <option value="">Seleccionar...</option>
@@ -114,7 +92,7 @@
 
                         <div class="custom-select-wrapper">
 
-                            <label for="zoneSelect">2. ZONA</label>
+                            <label for="zoneSelect">Seleccionar ZONA</label>
 
                             <select id="zoneSelect" class="custom-select" onchange="loadData()" disabled>
                                 <option value="">Esperando conferencia...</option>
@@ -135,10 +113,13 @@
                     <div class="stats-grid">
                         
                         <div class="stat-card">
+
                             <h3 class="card-header-title">Resultados</h3>
+
                             <div id="matches-container">
                                 <p style="text-align:center; color:#888;">Selecciona una zona.</p>
                             </div>
+
                         </div>
 
                         <div class="stat-card">
@@ -181,10 +162,10 @@
             </section>
 
         </article>
-
+        
     </main>
 
-    <script src="assets/js/federal.js"></script>
+    <script type="module" src="assets/js/federal.js"></script>
     <script src="assets/js/principal.js"></script>
     
 </body>
