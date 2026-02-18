@@ -31,11 +31,13 @@
 }
 
 * {
-    margin: 0; padding: 0;
+    margin: 0; 
+    padding: 0;
     box-sizing: border-box;
 }
 
-*::selection {
+*::selection 
+{
     background-color: #0050B8;
     color: #fff;
 }
@@ -76,7 +78,8 @@ body { background-color: #fff; }
 
 .container { padding-inline: 15px; }
 
-.h1, .h2, .h3 {
+.h1, .h2, .h3 
+{
     color: #3b3951;
     font-family: 'Mulish', sans-serif;
     line-height: 1.2;
@@ -627,3 +630,57 @@ table th, table td { padding: 10px; border: 1px solid #ddd; text-align: center; 
 th { white-space: nowrap; }
 .table-container { overflow-x: auto; }
 .table-container::-webkit-scrollbar { height: 10px; }
+
+/* Zonas de Clasificación - Liga Nacional */
+
+/* 1 al 4: Playoffs Directos (Verde) */
+.pos-direct {
+    color: #28a745; /* Verde estándar */
+    font-weight: 700;
+}
+
+/* 5 al 12: PlayIn (Verde más claro) */
+.pos-playin {
+    color: #8fd19e; /* Verde pastel/claro */
+    font-weight: 700;
+}
+
+/* 13 al 17: Zona Neutra (Opcional, color por defecto) */
+
+/* 18 al 19: PlayOut / Descenso (Rojo) */
+.pos-playout {
+    color: #dc3545; /* Rojo intenso */
+    font-weight: 700;
+}
+
+.table-legend 
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 0.85rem;
+    justify-content: center;
+}
+.legend-item 
+{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #555;
+    font-weight: 500;
+}
+.dot 
+{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.dot-playoff { background-color: #28a745; }
+
+.dot-playin { background-color: #8fd19e; }
+
+.dot-playout { background-color: #dc3545; }
